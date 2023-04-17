@@ -2,6 +2,7 @@ using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Refit;
@@ -45,16 +46,19 @@ public class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow();
             desktop.MainWindow.DataContext = _host.Services.GetRequiredService<MainWindowViewModel>();
+            
+            var navigationService = _host.Services.GetRequiredService<NavigationService>();
+            var todoService = _host.Services.GetRequiredService<TodoService>();
+        
+            Dispatcher.UIThread.Post(async () => await todoService.Init());
+        
+            navigationService.Navigate<TodoListViewModel>();
         }
 
-        var navigationService = _host.Services.GetRequiredService<NavigationService>();
-        navigationService.Navigate<TodoListViewModel>();
-        
         base.OnFrameworkInitializationCompleted();
     }
 }
