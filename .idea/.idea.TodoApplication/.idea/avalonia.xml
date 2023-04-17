@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="AvaloniaApplication2/App.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/List/ListView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Notes/Add/AddView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Notes/AddNote/AddNoteView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Notes/MenuBar/MenuBarView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Notes/NotesView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Todo/AddTodo/AddTodoView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Todo/TodoCommandPanel/TodoCommandPanelView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Features/Todo/TodoMenuBar/TodoMenuBarView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/MainWindow.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Pages/Main/MainWindow.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Shared/DialogModal.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="AvaloniaApplication2/Shared/Navigation/NavigationView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="Todo.Desktop/App.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Features/Todo/AddTodo/AddTodoView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Features/Todo/EditTodo/EditTodoView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Features/Todo/TodoCommandPanel/TodoCommandPanelView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Features/Todo/TodoList/TodoListView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Pages/Main/MainWindow.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Shared/Navigation/NavigationView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

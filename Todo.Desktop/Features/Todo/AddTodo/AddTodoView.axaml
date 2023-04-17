@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Todo.Desktop.Features.Todo.AddTodo"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Todo.Desktop.Features.Todo.AddTodo.AddTodoView"
+             x:DataType="local:AddTodoViewModel"
+             x:CompileBindings="True"
+>
+    <StackPanel>
+        <TextBlock IsVisible="{Binding IsAddMode}">Create a new todo</TextBlock>
+        <TextBlock IsVisible="{Binding !IsAddMode}"
+                   Text="{Binding Todo.Name, StringFormat='Edit todo \'{0}\''}"/>
+        
+        <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0">Name:</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Todo.Name}"/>
+            
+            <TextBlock Grid.Row="1" Grid.Column="0">Details:</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Todo.Details}"/>
+            
+            <TextBlock Grid.Row="2" Grid.Column="0">Planned on:</TextBlock>
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Todo.PlannedOn}"/>
+        </Grid>
+        
+        <Button HorizontalAlignment="Right" 
+                Command="{Binding SubmitCommand}">Submit</Button>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:todoList="clr-namespace:Todo.Desktop.Features.Todo.TodoList"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Todo.Desktop.Features.Todo.TodoList.TodoListView"
+             x:DataType="todoList:TodoListViewModel"
+             x:CompileBindings="True"
+>
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <DataGrid IsReadOnly="True" 
+                  Items="{Binding Todos}"
+                  SelectedItem="{Binding Selected, Mode=TwoWay}"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{ReflectionBinding Name}"/>
+                <DataGridTextColumn Header="Details" Binding="{ReflectionBinding Details}"/>
+                <DataGridTextColumn Header="PlannedOn" Binding="{ReflectionBinding PlannedOn, StringFormat={}{0:dd.MM.yy}}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
+                    <MenuItem Header="Edit" Command="{Binding EditCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+    </ScrollViewer>
+</UserControl>
