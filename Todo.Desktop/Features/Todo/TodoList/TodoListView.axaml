@@ -8,22 +8,20 @@
              x:DataType="todoList:TodoListViewModel"
              x:CompileBindings="True"
 >
-    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
-        <DataGrid IsReadOnly="True" 
-                  Items="{Binding Todos}"
-                  SelectedItem="{Binding Selected, Mode=TwoWay}"
-                  >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{ReflectionBinding Name}"/>
-                <DataGridTextColumn Header="Details" Binding="{ReflectionBinding Details}"/>
-                <DataGridTextColumn Header="PlannedOn" Binding="{ReflectionBinding PlannedOn, StringFormat={}{0:dd.MM.yy}}"/>
-            </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
-                    <MenuItem Header="Edit" Command="{Binding EditCommand}"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
-    </ScrollViewer>
+    <DataGrid
+        Items="{Binding Todos}"
+        SelectedItem="{Binding Selected, Mode=TwoWay}"
+        VerticalScrollBarVisibility="Auto">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Name" Binding="{ReflectionBinding Name}"/>
+            <DataGridTextColumn Header="Details" Binding="{ReflectionBinding Details}"/>
+            <DataGridTextColumn Header="PlannedOn" Binding="{ReflectionBinding PlannedOn, StringFormat={}{0:dd.MM.yy}}"/>
+        </DataGrid.Columns>
+        <DataGrid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
+                <MenuItem Header="Edit" Command="{Binding EditCommand}"/>
+            </ContextMenu>
+        </DataGrid.ContextMenu>
+    </DataGrid>
 </UserControl>

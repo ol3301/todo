@@ -35,23 +35,11 @@ public class TodoListViewModel : ViewModelBase
 
     public TodoListViewModel(TodoStore store,
         NavigationService navigationService,
-        ITodoApi api,
-        TodoService service)
+        ITodoApi api)
     {
         _store = store;
         Todos = store.Todos;
-        
         EditCommand = new EditCommand(navigationService, store);
         DeleteCommand = new DeleteCommand(store, api);
-
-        //Init(service);
-
-        
-        Dispatcher.UIThread.Post(async () => await service.Init());
-    }
-
-    private async Task Init(TodoService service)
-    {
-        await service.Init();
     }
 }

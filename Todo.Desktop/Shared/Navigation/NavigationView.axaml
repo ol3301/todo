@@ -19,6 +19,5 @@
         </DataTemplate>
     </UserControl.DataTemplates>
     
-    <ContentControl Margin="10" 
-        Content="{Binding CurrentViewModel }"/>
+    <ContentControl Margin="10" Content="{Binding CurrentViewModel }"/>
 </UserControl>

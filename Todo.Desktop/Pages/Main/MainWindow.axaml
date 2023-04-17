@@ -12,13 +12,14 @@
         Width="600"
         Height="500"
         Title="Todo.Desktop">
-        
-    <StackPanel>
+    
+    <Grid RowDefinitions="Auto,*">
         <todoCommandPanel:TodoCommandPanelView 
-            HorizontalContentAlignment="Center"
+            Grid.Row="0" 
+            HorizontalContentAlignment="Center" 
             Margin="10" 
             DataContext="{Binding TodoCommandPanelViewModel}"/>
         
-        <navigation:NavigationView DataContext="{Binding NavigationViewModel}" /> 
-    </StackPanel>
+        <navigation:NavigationView Grid.Row="1" DataContext="{Binding NavigationViewModel}" /> 
+    </Grid>
 </Window>

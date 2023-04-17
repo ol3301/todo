@@ -7,7 +7,7 @@ namespace Todo.Desktop.Features.Todo;
 public interface ITodoApi
 {
     [Get("/api/todo")]
-    public Task<IApiResponse<IList<TodoItem>>> GetAll();
+    public Task<IApiResponse<IEnumerable<TodoItem>>> GetAll();
 
     [Post("/api/todo")]
     public Task<IApiResponse> Create(TodoItem todo);

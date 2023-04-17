@@ -15,13 +15,6 @@ public class DeleteCommand : CommandBase
 
     public override async void Execute(object? parameter)
     {
-        var res = await _api.Delete(_store.Selected!.TodoId);
-
-        if (!res.IsSuccessStatusCode)
-        {
-            return;
-        }
-        
         _store.Todos.Remove(_store.Selected!);
     }
 

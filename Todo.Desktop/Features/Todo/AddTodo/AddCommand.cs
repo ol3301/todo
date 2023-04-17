@@ -28,12 +28,12 @@ public class AddCommand : CommandBase
             PlannedOn = _model.Todo.PlannedOn
         };
 
-        var res = await _api.Create(todo);
-        
-        if (!res.IsSuccessStatusCode)
-        {
-            return;
-        }
+        //var res = await _api.Create(todo);
+        //
+        //if (!res.IsSuccessStatusCode)
+        //{
+        //    return;
+        //}
             
         _store.Todos.Add(todo);
         _model.Processing = false;

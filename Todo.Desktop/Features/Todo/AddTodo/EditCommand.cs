@@ -23,18 +23,18 @@ public class EditCommand : CommandBase
         
         var todo = _store.TodoToModify;
 
-        var res = await _api.Edit(new TodoItem
-        {
-            TodoId = todo!.TodoId,
-            Name = _model.Todo.Name,
-            Details = _model.Todo.Details,
-            PlannedOn = _model.Todo.PlannedOn
-        });
+        //var res = await _api.Edit(new TodoItem
+        //{
+        //    TodoId = todo!.TodoId,
+        //    Name = _model.Todo.Name,
+        //    Details = _model.Todo.Details,
+        //    PlannedOn = _model.Todo.PlannedOn
+        //});
 
-        if (!res.IsSuccessStatusCode)
-        {
-            return;
-        }
+        //if (!res.IsSuccessStatusCode)
+        //{
+        //    return;
+        //}
 
         todo.Name = _model.Todo.Name;
         todo.Details = _model.Todo.Details;

@@ -6,10 +6,11 @@ var app = builder.Build();
 
 app.MapGet("/api/todo", async () =>
 {
-    await Task.Delay(3000);
+    Console.WriteLine("/api/todo get");
+    await Task.Delay(1000);
     var list = new List<TodoItem>();
 
-    for (int i = 0; i < 100; ++i)
+    for (int i = 0; i < 6; ++i)
     {
         list.Add(new() {TodoId = 1, Name = "Learn", Details = "Improve skills", PlannedOn = DateTimeOffset.Now.AddMinutes(15)});
         list.Add(new() {TodoId = 1, Name = "Work", Details = "Learn money", PlannedOn = DateTimeOffset.Now.AddHours(2)});
