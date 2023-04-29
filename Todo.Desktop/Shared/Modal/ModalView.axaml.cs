@@ -1,12 +1,12 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Avalonia.ReactiveUI;
 
-namespace Todo.Desktop.Features.Todo.TodoList;
+namespace Todo.Desktop.Shared.Modal;
 
-public partial class TodoListView : ReactiveUserControl<TodoListViewModel>
+public partial class ModalView : UserControl
 {
-    public TodoListView()
+    public ModalView()
     {
         InitializeComponent();
     }

@@ -1,24 +1,32 @@
+using System;
+using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading;
+using ReactiveUI;
+
 namespace Todo.Desktop.Shared.Navigation;
 
-public class NavigationViewModel : ViewModelBase
+public class NavigationViewModel : ReactiveObject, IActivatableViewModel
 {
-    private readonly NavigationStore _navigationStore;
-
     private object _currentViewModel;
     public object CurrentViewModel
     {
         get => _currentViewModel;
-        set
-        {
-            _currentViewModel = value;
-            OnPropertyChanged();
-        }
+        set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);
     }
 
     public NavigationViewModel(NavigationStore navigationStore)
     {
-        _navigationStore = navigationStore;
-        CurrentViewModel = _navigationStore.CurrentViewModelChanged;
-        _navigationStore.CurrentViewModelChanged += newViewModel => CurrentViewModel = newViewModel ;
+        Activator = new ViewModelActivator();
+        
+        this.WhenActivated(disposables =>
+        {
+            navigationStore.CurrentViewModel
+                .Subscribe(model => CurrentViewModel = model)
+                .DisposeWith(disposables);
+        });
     }
+
+    public ViewModelActivator Activator { get; }
 }

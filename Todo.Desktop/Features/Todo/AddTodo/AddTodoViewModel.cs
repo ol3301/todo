@@ -1,46 +1,30 @@
-using System;
-using System.Windows.Input;
-using Todo.Desktop.Shared;
+using System.Reactive;
+using Avalonia.Controls.Mixins;
+using ReactiveUI;
 
 namespace Todo.Desktop.Features.Todo.AddTodo;
 
-public class AddTodoViewModel : ViewModelBase
+public class AddTodoViewModel : ReactiveObject
 {
-    private readonly TodoStore _store;
+    private TodoItemViewModel _todo;
 
-    public TodoItemViewModel Todo { get; }
-    
-    public bool IsAddMode => _store.Mode == StoreMode.Add;
-    
-    public ICommand SubmitCommand { get; }
-
-    private bool _processing;
-
-    public bool Processing
+    public TodoItemViewModel Todo
     {
-        get => _processing;
-        set
-        {
-            _processing = value;
-            OnPropertyChanged();
-            OnProcessingChange?.Invoke();
-        }
+        get => _todo;
+        set => this.RaiseAndSetIfChanged(ref _todo, value);
     }
+    
+    public bool IsAddMode { get; }
 
-    public Action? OnProcessingChange { get; set; }
+    public ReactiveCommand<Unit, Unit> SubmitCommand { get; set; }
 
-    public AddTodoViewModel(TodoStore store, ITodoApi api)
+    public AddTodoViewModel(TodoStore store)
     {
-        _store = store;
+        IsAddMode = store.Mode == StoreMode.Add;
+
         if (IsAddMode)
-        {
-            Todo = new TodoItemViewModel();
-            SubmitCommand = new AddCommand(this, _store, api);
-        }
+            this.BindAddCommand(store);
         else
-        {
-            Todo = TodoItemViewModel.FromTodo(store.TodoToModify!);
-            SubmitCommand = new EditCommand(this, _store, api);
-        }
+            this.BindEditCommand(store);
     }
 }

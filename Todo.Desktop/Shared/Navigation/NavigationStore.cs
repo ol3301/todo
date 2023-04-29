@@ -1,20 +1,25 @@
 using System;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using System.Threading;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Todo.Desktop.Shared.Navigation;
 
 public class NavigationStore
 {
-    private object _currentViewMode;
+    private readonly IServiceProvider _serviceProvider;
 
-    public object CurrentViewModel
+    public ReplaySubject<object> CurrentViewModel;
+    
+    public NavigationStore(IServiceProvider serviceProvider)
     {
-        get => _currentViewMode;
-        set
-        {
-            _currentViewMode = value;
-            CurrentViewModelChanged?.Invoke(value);
-        }
+        _serviceProvider = serviceProvider;
+        CurrentViewModel = new ReplaySubject<object>();
     }
 
-    public Action<object> CurrentViewModelChanged;
+    public void Navigate<TVm>()
+    {
+        CurrentViewModel.OnNext(_serviceProvider.GetRequiredService<TVm>());
+    }
 }

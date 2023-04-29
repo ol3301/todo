@@ -11,15 +11,4 @@ public class TodoItem
     public string Details { get; set; }
     
     public DateTimeOffset? PlannedOn { get; set; }
-    
-    public TodoItem Clone()
-    {
-        return new TodoItem
-        {
-            TodoId = TodoId,
-            Name = Name,
-            Details = Details,
-            PlannedOn = PlannedOn
-        };
-    }
 }

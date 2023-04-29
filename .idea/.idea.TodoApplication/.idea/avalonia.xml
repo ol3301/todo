@@ -3,6 +3,7 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="AvaloniaApplication1/Views/MainWindow.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
         <entry key="AvaloniaApplication2/App.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
         <entry key="AvaloniaApplication2/Features/List/ListView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
         <entry key="AvaloniaApplication2/Features/Notes/Add/AddView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
@@ -22,6 +23,7 @@
         <entry key="Todo.Desktop/Features/Todo/TodoCommandPanel/TodoCommandPanelView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Features/Todo/TodoList/TodoListView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Pages/Main/MainWindow.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Shared/Modal/ModalView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Shared/Navigation/NavigationView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
       </map>
     </option>

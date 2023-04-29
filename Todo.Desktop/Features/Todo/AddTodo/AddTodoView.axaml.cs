@@ -1,9 +1,9 @@
-using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.ReactiveUI;
 
 namespace Todo.Desktop.Features.Todo.AddTodo;
 
-public partial class AddTodoView : UserControl
+public partial class AddTodoView : ReactiveUserControl<AddTodoViewModel>
 {
     public AddTodoView()
     {

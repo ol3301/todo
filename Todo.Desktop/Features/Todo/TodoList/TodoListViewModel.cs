@@ -1,45 +1,33 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Avalonia.Threading;
-using Todo.Desktop.Shared;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Threading;
+using ReactiveUI;
+using Todo.Desktop.Features.Todo.TodoCommandPanel;
 using Todo.Desktop.Shared.Navigation;
 
 namespace Todo.Desktop.Features.Todo.TodoList;
 
-public class TodoListViewModel : ViewModelBase
+public class TodoListViewModel : ReactiveObject
 {
-    private readonly TodoStore _store;
     public ObservableCollection<TodoItem> Todos { get; }
 
-    private TodoItem _selected;
-    public TodoItem Selected
+    private TodoItem? _selected;
+    public TodoItem? Selected
     {
-        get
-        {
-            _store.SetSelectedTodo(_selected);
-            return _selected;
-        }
-        set
-        {
-            _selected = value;
-            OnPropertyChanged();
-            _store.SetSelectedTodo(value);
-        }
+        get => _selected;
+        set => this.RaiseAndSetIfChanged(ref _selected, value);
     }
     
-    public ICommand DeleteCommand { get; }
+    public ReactiveCommand<Unit, Unit> DeleteCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> EditCommand { get; set; }
     
-    public ICommand EditCommand { get; }
-
-    public TodoListViewModel(TodoStore store,
-        NavigationService navigationService,
-        ITodoApi api)
+    public TodoListViewModel(TodoStore store, NavigationStore navigationStore)
     {
-        _store = store;
         Todos = store.Todos;
-        EditCommand = new EditCommand(navigationService, store);
-        DeleteCommand = new DeleteCommand(store, api);
+
+        this.BindDeleteCommand(store);
+        this.BindEditCommand(store, navigationStore);
     }
 }

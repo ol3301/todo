@@ -5,6 +5,7 @@
         xmlns:navigation="clr-namespace:Todo.Desktop.Shared.Navigation"
         xmlns:main="clr-namespace:Todo.Desktop.Pages.Main"
         xmlns:todoCommandPanel="clr-namespace:Todo.Desktop.Features.Todo.TodoCommandPanel"
+        xmlns:modal="clr-namespace:Todo.Desktop.Shared.Modal"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="350"
         x:Class="Todo.Desktop.Pages.Main.MainWindow"
         x:DataType="main:MainWindowViewModel"
@@ -13,13 +14,18 @@
         Height="500"
         Title="Todo.Desktop">
     
-    <Grid RowDefinitions="Auto,*">
-        <todoCommandPanel:TodoCommandPanelView 
-            Grid.Row="0" 
-            HorizontalContentAlignment="Center" 
-            Margin="10" 
-            DataContext="{Binding TodoCommandPanelViewModel}"/>
+    <Grid>
+        <modal:ModalView IsVisible="False"/>
         
-        <navigation:NavigationView Grid.Row="1" DataContext="{Binding NavigationViewModel}" /> 
+        <Grid RowDefinitions="Auto,*">
+            <todoCommandPanel:TodoCommandPanelView 
+                ZIndex="100"
+                Grid.Row="0" 
+                HorizontalContentAlignment="Center" 
+                Margin="10" 
+                DataContext="{Binding TodoCommandPanelViewModel}"/>
+        
+            <navigation:NavigationView Grid.Row="1" DataContext="{Binding NavigationViewModel}" /> 
+        </Grid>
     </Grid>
 </Window>

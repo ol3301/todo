@@ -3,11 +3,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:todoList="clr-namespace:Todo.Desktop.Features.Todo.TodoList"
+             xmlns:todoCommandPanel="clr-namespace:Todo.Desktop.Features.Todo.TodoCommandPanel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Todo.Desktop.Features.Todo.TodoList.TodoListView"
              x:DataType="todoList:TodoListViewModel"
              x:CompileBindings="True"
 >
+    
     <DataGrid
         Items="{Binding Todos}"
         SelectedItem="{Binding Selected, Mode=TwoWay}"

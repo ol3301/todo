@@ -1,24 +1,19 @@
-using System.Windows.Input;
-using Todo.Desktop.Features.Todo.TodoList;
-using Todo.Desktop.Shared;
+using System.Reactive;
+using System.Reactive.Disposables;
+using ReactiveUI;
+using Todo.Desktop.Features.Todo.AddTodo;
 using Todo.Desktop.Shared.Navigation;
 
 namespace Todo.Desktop.Features.Todo.TodoCommandPanel;
 
-public class TodoCommandPanelViewModel : ViewModelBase
+public class TodoCommandPanelViewModel : ReactiveObject
 {
-    public ICommand AddCommand { get; }
-    public ICommand HomeCommand { get; }
-    public ICommand DeleteCommand { get; }
-    public ICommand EditCommand { get; }
-
-    public TodoCommandPanelViewModel(NavigationService navigationService,
-        TodoStore store,
-        ITodoApi api)
+    public ReactiveCommand<Unit, Unit> AddCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> HomeCommand { get; set; }
+    public TodoCommandPanelViewModel(NavigationStore navigationStore,
+        TodoStore store)
     {
-        HomeCommand = new CommandBase(() => navigationService.Navigate<TodoListViewModel>());
-        AddCommand = new AddCommand(navigationService, store);
-        EditCommand = new EditCommand(navigationService, store);
-        DeleteCommand = new DeleteCommand(store, api);
+        this.BindAddCommand(navigationStore, store);
+        this.BindHomeCommand(navigationStore);
     }
 }
