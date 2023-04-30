@@ -1,7 +1,5 @@
 using System;
-using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Todo.Desktop.Shared.Navigation;
@@ -15,7 +13,7 @@ public class NavigationStore
     public NavigationStore(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
-        CurrentViewModel = new ReplaySubject<object>();
+        CurrentViewModel = new ReplaySubject<object>(1);
     }
 
     public void Navigate<TVm>()
