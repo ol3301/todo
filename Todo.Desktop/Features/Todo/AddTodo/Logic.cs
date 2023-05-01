@@ -1,12 +1,12 @@
-using System;
-using System.Reactive.Linq;
 using ReactiveUI;
+using Todo.Desktop.Shared.Modal;
 
 namespace Todo.Desktop.Features.Todo.AddTodo;
 
 public static class Logic
 {
-    public static void BindAddCommand(this AddTodoViewModel model, TodoStore store)
+    public static void BindAddCommand(this AddTodoViewModel model, TodoStore todoStore,
+        ModalStore modalStore)
     {
         model.Todo = new TodoItemViewModel();
         
@@ -19,21 +19,26 @@ public static class Logic
                 PlannedOn = model.Todo.PlannedOn
             };
         
-            store.Todos.Add(todo);
+            todoStore.Todos.Add(todo);
+            
+            modalStore.Hide();
         });
     }
     
-    public static void BindEditCommand(this AddTodoViewModel model, TodoStore store)
+    public static void BindEditCommand(this AddTodoViewModel model, TodoStore todoStore,
+        ModalStore modalStore)
     {
-        model.Todo = TodoItemViewModel.FromTodo(store.TodoToModify!);
+        model.Todo = TodoItemViewModel.FromTodo(todoStore.TodoToModify!);
         
         model.SubmitCommand = ReactiveCommand.Create(() =>
         {
-            var todo = store.TodoToModify;
+            var todo = todoStore.TodoToModify;
         
             todo.Name = model.Todo.Name;
             todo.Details = model.Todo.Details;
             todo.PlannedOn = model.Todo.PlannedOn;
+            
+            modalStore.Hide();
         });
     }
 }

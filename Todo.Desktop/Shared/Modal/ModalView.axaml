@@ -2,10 +2,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:modal="clr-namespace:Todo.Desktop.Shared.Modal"
+             xmlns:addTodo="clr-namespace:Todo.Desktop.Features.Todo.AddTodo"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Todo.Desktop.Shared.Modal.ModalView">
-    <Grid>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center">This is a modal!</TextBlock>
+             x:Class="Todo.Desktop.Shared.Modal.ModalView"
+             x:DataType="modal:ModalViewModel"
+             x:CompileBindings="True">
+    <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="*,Auto,*">
+        <Grid Grid.ColumnSpan="3"
+              Grid.RowSpan="3"
+              Name="BackgroundGrid"
+              Background="Black" 
+              Opacity="0.75"
+              PointerPressed="OnHideHandler"
+        />
+        
+        <Border Grid.Column="1" Grid.Row="1"
+                Background="White"
+                CornerRadius="3">
+            <Border.DataTemplates>
+                <DataTemplate DataType="{x:Type addTodo:AddTodoViewModel}">
+                    <addTodo:AddTodoView/>
+                </DataTemplate>
+            </Border.DataTemplates>
+        
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Border>
     </Grid>
 </UserControl>

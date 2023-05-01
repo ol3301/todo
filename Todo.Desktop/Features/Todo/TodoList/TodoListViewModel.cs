@@ -5,6 +5,7 @@ using System.Reactive.Disposables;
 using System.Threading;
 using ReactiveUI;
 using Todo.Desktop.Features.Todo.TodoCommandPanel;
+using Todo.Desktop.Shared.Modal;
 using Todo.Desktop.Shared.Navigation;
 
 namespace Todo.Desktop.Features.Todo.TodoList;
@@ -23,11 +24,11 @@ public class TodoListViewModel : ReactiveObject
     public ReactiveCommand<Unit, Unit> DeleteCommand { get; set; }
     public ReactiveCommand<Unit, Unit> EditCommand { get; set; }
     
-    public TodoListViewModel(TodoStore store, NavigationStore navigationStore)
+    public TodoListViewModel(TodoStore store, ModalStore modalStore)
     {
         Todos = store.Todos;
 
         this.BindDeleteCommand(store);
-        this.BindEditCommand(store, navigationStore);
+        this.BindEditCommand(store, modalStore);
     }
 }

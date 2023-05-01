@@ -1,6 +1,6 @@
 using System.Reactive;
-using Avalonia.Controls.Mixins;
 using ReactiveUI;
+using Todo.Desktop.Shared.Modal;
 
 namespace Todo.Desktop.Features.Todo.AddTodo;
 
@@ -18,13 +18,13 @@ public class AddTodoViewModel : ReactiveObject
 
     public ReactiveCommand<Unit, Unit> SubmitCommand { get; set; }
 
-    public AddTodoViewModel(TodoStore store)
+    public AddTodoViewModel(TodoStore todoStore, ModalStore modalStore)
     {
-        IsAddMode = store.Mode == StoreMode.Add;
+        IsAddMode = todoStore.Mode == StoreMode.Add;
 
         if (IsAddMode)
-            this.BindAddCommand(store);
+            this.BindAddCommand(todoStore, modalStore);
         else
-            this.BindEditCommand(store);
+            this.BindEditCommand(todoStore, modalStore);
     }
 }

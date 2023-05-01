@@ -3,28 +3,65 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Todo.Desktop.Features.Todo.AddTodo"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" 
              x:Class="Todo.Desktop.Features.Todo.AddTodo.AddTodoView"
              x:DataType="local:AddTodoViewModel"
              x:CompileBindings="True"
 >
-    <StackPanel>
-        <TextBlock IsVisible="{Binding IsAddMode}">Create a new todo</TextBlock>
-        <TextBlock IsVisible="{Binding !IsAddMode}"
-                   Text="{Binding Todo.Name, StringFormat='Edit todo \'{0}\''}"/>
+    
+    <UserControl.Styles>
+        <Style Selector="Border.header">
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
         
-        <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto">
-            <TextBlock Grid.Row="0" Grid.Column="0">Name:</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Todo.Name}"/>
-            
-            <TextBlock Grid.Row="1" Grid.Column="0">Details:</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Todo.Details}"/>
-            
-            <TextBlock Grid.Row="2" Grid.Column="0">Planned on:</TextBlock>
-            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Todo.PlannedOn}"/>
-        </Grid>
+        <Style Selector="Border.header TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
         
-        <Button HorizontalAlignment="Right" 
-                Command="{Binding SubmitCommand}">Submit</Button>
-    </StackPanel>
+        <Style Selector="Border.content">
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+        
+        <Style Selector="Border.footer">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0 50 0 0"/>
+        </Style>
+        
+    </UserControl.Styles>
+    
+    <Grid RowDefinitions="Auto, *, Auto">
+        
+        <Border Grid.Row="0" Classes="header">
+            <Grid>
+                <TextBlock IsVisible="{Binding IsAddMode}"
+                           Classes="header">Create a new todo</TextBlock>
+                <TextBlock IsVisible="{Binding !IsAddMode}"
+                           Classes="header"
+                           Text="{Binding Todo.Name, StringFormat='Edit todo \'{0}\''}"/>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="1" Classes="content">
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto">
+                
+                <TextBlock Grid.Row="0" Grid.Column="0">Name:</TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Todo.Name}"/>
+            
+                <TextBlock Grid.Row="1" Grid.Column="0">Details:</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Todo.Details}"/>
+            
+                <TextBlock Grid.Row="2" Grid.Column="0">Planned on:</TextBlock>
+                <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Todo.PlannedOn}"/>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="2" Classes="footer">
+            <Button HorizontalAlignment="Right" 
+                    Command="{Binding SubmitCommand}">Submit</Button>
+        </Border>
+    </Grid>
 </UserControl>

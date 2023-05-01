@@ -2,6 +2,7 @@ using System;
 using System.Reactive.Linq;
 using ReactiveUI;
 using Todo.Desktop.Features.Todo.AddTodo;
+using Todo.Desktop.Shared.Modal;
 using Todo.Desktop.Shared.Navigation;
 
 namespace Todo.Desktop.Features.Todo.TodoList;
@@ -21,7 +22,7 @@ public static class Logic
     
     public static void BindEditCommand(this TodoListViewModel model, 
         TodoStore store,
-        NavigationStore navigationStore)
+        ModalStore modalStore)
     {
         var canExecute = model.WhenAnyValue(x => x.Selected)
             .Select(x => x != null);
@@ -30,7 +31,7 @@ public static class Logic
         {
             store.Mode = StoreMode.Edit;
             store.TodoToModify = model.Selected;
-            navigationStore.Navigate<AddTodoViewModel>();
+            modalStore.Show<AddTodoViewModel>();
         }, canExecute);
     }
 }

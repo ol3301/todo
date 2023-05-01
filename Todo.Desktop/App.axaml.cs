@@ -9,6 +9,7 @@ using Todo.Desktop.Features.Todo.AddTodo;
 using Todo.Desktop.Features.Todo.TodoCommandPanel;
 using Todo.Desktop.Features.Todo.TodoList;
 using Todo.Desktop.Pages.Main;
+using Todo.Desktop.Shared.Modal;
 using Todo.Desktop.Shared.Navigation;
 
 namespace Todo.Desktop;
@@ -33,9 +34,11 @@ public class App : Application
                     services.AddTransient<NavigationViewModel>();
                     services.AddTransient<TodoCommandPanelViewModel>();
                     services.AddTransient<AddTodoViewModel>();
+                    services.AddTransient<ModalViewModel>();
                     
                     services.AddSingleton<TodoStore>();
                     services.AddSingleton<NavigationStore>();
+                    services.AddSingleton<ModalStore>();
                 })
                 .Build();
             
