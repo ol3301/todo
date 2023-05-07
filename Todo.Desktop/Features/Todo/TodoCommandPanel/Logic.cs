@@ -1,4 +1,3 @@
-using System;
 using ReactiveUI;
 using Todo.Desktop.Features.Todo.AddTodo;
 using Todo.Desktop.Features.Todo.TodoList;
@@ -14,8 +13,8 @@ public static class Logic
     {
         model.AddCommand = ReactiveCommand.Create(() =>
         {
-            todoStore.Mode = StoreMode.Add;
-            modalStore.Show<AddTodoViewModel>();
+            modalStore.Show<AddTodoViewModel>()
+                .BindAddCommand(todoStore, modalStore);
         });
     }
     

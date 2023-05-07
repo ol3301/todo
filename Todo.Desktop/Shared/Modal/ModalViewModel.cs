@@ -1,36 +1,32 @@
 using System;
-using System.Reactive;
-using Microsoft.Extensions.DependencyInjection;
+using System.Reactive.Linq;
+using System.Threading;
 using ReactiveUI;
-using Todo.Desktop.Features.Todo.AddTodo;
+using ReactiveUI.Fody.Helpers;
 
 namespace Todo.Desktop.Shared.Modal;
 
 public class ModalViewModel : ReactiveObject
 {
     private readonly ModalStore _store;
-    private object _currentViewModel;
-    
-    public object CurrentViewModel
-    {
-        get => _currentViewModel;
-        set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);
-    }
 
-    private bool _isModalVisible;
-
-    public bool IsModalVisible
-    {
-        get => _isModalVisible;
-        set => this.RaiseAndSetIfChanged(ref _isModalVisible, value);
-    }
-    
     public ModalViewModel(ModalStore store)
     {
         _store = store;
-        store.CurrentViewModel.Subscribe(model => CurrentViewModel = model);
-        store.IsModalVisible.Subscribe(visible => IsModalVisible = visible);
+        store.CurrentViewModel
+            .ObserveOn(SynchronizationContext.Current!)
+            .Subscribe(model =>
+            {
+                CurrentViewModel = model;
+                IsModalVisible = model != null;
+            });
     }
+
+    [Reactive]
+    public object? CurrentViewModel { get; set; }
+    
+    [Reactive]
+    public bool IsModalVisible { get; set; }
 
     public void HideModal()
     {

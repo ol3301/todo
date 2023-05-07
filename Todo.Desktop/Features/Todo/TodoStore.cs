@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using AutoBogus;
 
@@ -9,16 +8,9 @@ public class TodoStore
 {
     public ObservableCollection<TodoItem> Todos { get; }
     
-    public StoreMode Mode { get; set; }
-    
-    public Subject<TodoItem?> Selected { get; }
-    
-    public TodoItem? TodoToModify { get; set; }
     public TodoStore()
     {
         Todos = new ObservableCollection<TodoItem>();
-        Selected = new Subject<TodoItem?>();
-        Mode = StoreMode.Add;
     }
 
     public async Task Init()

@@ -1,44 +1,50 @@
 using ReactiveUI;
+using Todo.Desktop.Features.Todo.TodoList;
 using Todo.Desktop.Shared.Modal;
 
 namespace Todo.Desktop.Features.Todo.AddTodo;
 
 public static class Logic
 {
-    public static void BindAddCommand(this AddTodoViewModel model, TodoStore todoStore,
+    public static void BindAddCommand(this AddTodoViewModel model, 
+        TodoStore todoStore,
         ModalStore modalStore)
     {
-        model.Todo = new TodoItemViewModel();
+        model.IsAddMode = true;
         
         model.SubmitCommand = ReactiveCommand.Create(() =>
         {
             var todo = new TodoItem
             {
-                Name = model.Todo.Name,
-                Details = model.Todo.Details,
-                PlannedOn = model.Todo.PlannedOn
+                Name = model.Name,
+                Details = model.Details,
+                PlannedOn = model.PlannedOn
             };
         
             todoStore.Todos.Add(todo);
-            
             modalStore.Hide();
-        });
+        }, model.ValidationContext.Valid);
     }
     
-    public static void BindEditCommand(this AddTodoViewModel model, TodoStore todoStore,
+    public static void BindEditCommand(this AddTodoViewModel model,
+        TodoListViewModel todoListViewModel,
         ModalStore modalStore)
     {
-        model.Todo = TodoItemViewModel.FromTodo(todoStore.TodoToModify!);
+        model.IsAddMode = false;
+        
+        var selected = todoListViewModel.Selected!;
+        
+        model.Name = selected.Name;
+        model.Details = selected.Details;
+        model.PlannedOn = selected.PlannedOn;
         
         model.SubmitCommand = ReactiveCommand.Create(() =>
         {
-            var todo = todoStore.TodoToModify;
-        
-            todo.Name = model.Todo.Name;
-            todo.Details = model.Todo.Details;
-            todo.PlannedOn = model.Todo.PlannedOn;
+            selected.Name = model.Name;
+            selected.Details = model.Details;
+            selected.PlannedOn = model.PlannedOn;
             
             modalStore.Hide();
-        });
+        }, model.ValidationContext.Valid);
     }
 }

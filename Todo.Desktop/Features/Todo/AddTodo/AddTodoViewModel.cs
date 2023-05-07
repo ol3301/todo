@@ -1,30 +1,33 @@
+using System;
 using System.Reactive;
 using ReactiveUI;
-using Todo.Desktop.Shared.Modal;
+using ReactiveUI.Fody.Helpers;
+using ReactiveUI.Validation.Abstractions;
+using ReactiveUI.Validation.Extensions;
+using ValidationContext = ReactiveUI.Validation.Contexts.ValidationContext;
 
 namespace Todo.Desktop.Features.Todo.AddTodo;
 
-public class AddTodoViewModel : ReactiveObject
+public class AddTodoViewModel : ReactiveObject, IValidatableViewModel
 {
-    private TodoItemViewModel _todo;
-
-    public TodoItemViewModel Todo
-    {
-        get => _todo;
-        set => this.RaiseAndSetIfChanged(ref _todo, value);
-    }
+    public bool IsAddMode { get; set; }
     
-    public bool IsAddMode { get; }
-
     public ReactiveCommand<Unit, Unit> SubmitCommand { get; set; }
 
-    public AddTodoViewModel(TodoStore todoStore, ModalStore modalStore)
-    {
-        IsAddMode = todoStore.Mode == StoreMode.Add;
+    public ValidationContext ValidationContext { get; } = new();
 
-        if (IsAddMode)
-            this.BindAddCommand(todoStore, modalStore);
-        else
-            this.BindEditCommand(todoStore, modalStore);
+    public AddTodoViewModel()
+    {
+        this.ValidationRule(x => x.Name, p => !string.IsNullOrEmpty(p), "Error");
+        this.ValidationRule(x => x.Details, p => !string.IsNullOrEmpty(p), "Error");
     }
+
+    [Reactive]
+    public string Name { get; set; }
+    
+    [Reactive]
+    public string Details { get; set; }
+    
+    [Reactive]
+    public DateTimeOffset? PlannedOn { get; set; }
 }

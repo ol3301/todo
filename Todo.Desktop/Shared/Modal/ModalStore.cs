@@ -7,25 +7,24 @@ namespace Todo.Desktop.Shared.Modal;
 public class ModalStore
 {
     private readonly IServiceProvider _provider;
-    public ReplaySubject<object> CurrentViewModel { get; }
-    
-    public Subject<bool> IsModalVisible { get; }
-
+    public ReplaySubject<object?> CurrentViewModel { get; }
     public ModalStore(IServiceProvider provider)
     {
         _provider = provider;
-        CurrentViewModel = new ReplaySubject<object>(1);
-        IsModalVisible = new Subject<bool>();
+        CurrentViewModel = new ReplaySubject<object?>(1);
     }
 
-    public void Show<TVm>()
+    public TVm Show<TVm>() where TVm: notnull
     {
-        CurrentViewModel.OnNext(_provider.GetRequiredService<TVm>());
-        IsModalVisible.OnNext(true);
+        var model = _provider.GetRequiredService<TVm>();
+        
+        CurrentViewModel.OnNext(model);
+        
+        return model;
     }
 
     public void Hide()
     {
-        IsModalVisible.OnNext(false);
+        CurrentViewModel.OnNext(default);
     }
 }
