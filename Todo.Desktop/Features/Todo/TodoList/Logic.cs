@@ -19,7 +19,7 @@ public static class Logic
     }
     
     public static void BindEditCommand(this TodoListViewModel model,
-        ModalStore modalStore)
+        ModalService modalStore)
     {
         var canExecute = model.WhenAnyValue(x => x.Selected)
             .Select(x => x != null);

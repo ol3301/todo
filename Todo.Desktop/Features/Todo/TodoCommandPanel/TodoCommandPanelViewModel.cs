@@ -11,11 +11,11 @@ public class TodoCommandPanelViewModel : ReactiveObject
 {
     public ReactiveCommand<Unit, Unit> AddCommand { get; set; }
     public ReactiveCommand<Unit, Unit> HomeCommand { get; set; }
-    public TodoCommandPanelViewModel(NavigationStore navigationStore,
-        ModalStore modalStore,
+    public TodoCommandPanelViewModel(NavigationService navigationService,
+        ModalService modalStore,
         TodoStore store)
     {
         this.BindAddCommand(modalStore, store);
-        this.BindHomeCommand(navigationStore);
+        this.BindHomeCommand(navigationService);
     }
 }

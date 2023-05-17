@@ -1,30 +1,27 @@
 using System;
-using System.Reactive.Subjects;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Todo.Desktop.Shared.Modal;
 
-public class ModalStore
+public class ModalService
 {
     private readonly IServiceProvider _provider;
-    public ReplaySubject<object?> CurrentViewModel { get; }
-    public ModalStore(IServiceProvider provider)
+    public ModalService(IServiceProvider provider)
     {
         _provider = provider;
-        CurrentViewModel = new ReplaySubject<object?>(1);
     }
 
     public TVm Show<TVm>() where TVm: notnull
     {
         var model = _provider.GetRequiredService<TVm>();
         
-        CurrentViewModel.OnNext(model);
+        ModalView.ShowContent(model);
         
         return model;
     }
 
     public void Hide()
     {
-        CurrentViewModel.OnNext(default);
+        ModalView.Hide();
     }
 }

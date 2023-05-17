@@ -8,7 +8,7 @@ public static class Logic
 {
     public static void BindAddCommand(this AddTodoViewModel model, 
         TodoStore todoStore,
-        ModalStore modalStore)
+        ModalService modalStore)
     {
         model.IsAddMode = true;
         
@@ -28,7 +28,7 @@ public static class Logic
     
     public static void BindEditCommand(this AddTodoViewModel model,
         TodoListViewModel todoListViewModel,
-        ModalStore modalStore)
+        ModalService modalStore)
     {
         model.IsAddMode = false;
         

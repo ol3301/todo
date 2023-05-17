@@ -2,22 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:navigation="clr-namespace:Todo.Desktop.Shared.Navigation"
-             xmlns:todoList="clr-namespace:Todo.Desktop.Features.Todo.TodoList"
-             xmlns:addTodo="clr-namespace:Todo.Desktop.Features.Todo.AddTodo"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Todo.Desktop.Shared.Navigation.NavigationView"
-             x:DataType="navigation:NavigationViewModel"
              x:CompileBindings="True"
              >
-    <UserControl.DataTemplates>
-        <DataTemplate DataType="{x:Type todoList:TodoListViewModel}">
-            <todoList:TodoListView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type addTodo:AddTodoViewModel}">
-            <addTodo:AddTodoView/>
-        </DataTemplate>
-    </UserControl.DataTemplates>
-    
-    <ContentControl Margin="10" Content="{Binding CurrentViewModel }"/>
+    <ContentControl Margin="10" Name="ContentControl"/>
 </UserControl>

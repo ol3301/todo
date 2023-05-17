@@ -31,26 +31,25 @@ public class App : Application
                 {
                     services.AddTransient<MainWindowViewModel>();
                     services.AddTransient<TodoListViewModel>();
-                    services.AddTransient<NavigationViewModel>();
                     services.AddTransient<TodoCommandPanelViewModel>();
                     services.AddTransient<AddTodoViewModel>();
-                    services.AddTransient<ModalViewModel>();
                     
                     services.AddSingleton<TodoStore>();
-                    services.AddSingleton<NavigationStore>();
-                    services.AddSingleton<ModalStore>();
+                    
+                    services.AddSingleton<NavigationService>();
+                    services.AddSingleton<ModalService>();
                 })
                 .Build();
             
             desktop.MainWindow = new MainWindow();
             desktop.MainWindow.DataContext = host.Services.GetRequiredService<MainWindowViewModel>();
             
-            var navigationStore = host.Services.GetRequiredService<NavigationStore>();
+            var navigationStore = host.Services.GetRequiredService<NavigationService>();
             var todoStore = host.Services.GetRequiredService<TodoStore>();
         
             Dispatcher.UIThread.Post(async () => await todoStore.Init());
         
-            navigationStore.Navigate<TodoListViewModel>();
+            navigationStore.NavigateTo<TodoListViewModel>();
         }
 
         base.OnFrameworkInitializationCompleted();

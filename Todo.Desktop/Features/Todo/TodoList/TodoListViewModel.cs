@@ -16,7 +16,7 @@ public class TodoListViewModel : ReactiveObject
     public ReactiveCommand<Unit, Unit> DeleteCommand { get; set; }
     public ReactiveCommand<Unit, Unit> EditCommand { get; set; }
     
-    public TodoListViewModel(TodoStore todoStore, ModalStore modalStore)
+    public TodoListViewModel(TodoStore todoStore, ModalService modalStore)
     {
         Todos = todoStore.Todos;
 
