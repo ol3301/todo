@@ -22,7 +22,6 @@ public class AddTodoViewModel : ReactiveObject, IValidatableViewModel
     {
         this.ValidationRule(x => x.Name, p => !string.IsNullOrEmpty(p), "Error");
         this.ValidationRule(x => x.Details, p => !string.IsNullOrEmpty(p), "Error");
-        throw new Exception("Dummy exception");
     }
 
     [Reactive]
