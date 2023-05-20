@@ -2,7 +2,7 @@ using System;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
-namespace Todo.Desktop.Features.Todo;
+namespace Todo.Desktop.Modules.Todo;
 
 public class TodoItem: ReactiveObject
 {
@@ -14,4 +14,7 @@ public class TodoItem: ReactiveObject
     
     [Reactive]
     public DateTimeOffset? PlannedOn { get; set; }
+    
+    [Reactive]
+    public bool Completed { get; set; }
 }

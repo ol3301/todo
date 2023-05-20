@@ -22,9 +22,14 @@
         <entry key="Todo.Desktop/Features/Todo/EditTodo/EditTodoView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Features/Todo/TodoCommandPanel/TodoCommandPanelView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Features/Todo/TodoList/TodoListView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Modules/Todo/AddTodo/AddTodoView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Modules/Todo/TodoList/TodoListView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Pages/Main/MainWindow.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Pages/UnhandledException/UnhandledExceptionWindow.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Shared/Modal/ModalView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Shared/Navigation/NavigationView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Shared/Notification/NotificationView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
+        <entry key="Todo.Desktop/Shared/Toast/ToasView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
       </map>
     </option>
   </component>

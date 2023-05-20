@@ -2,11 +2,11 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 
-namespace Todo.Desktop.Features.Todo.TodoList;
+namespace Todo.Desktop.Modules.Todo.TodoCommandPanel;
 
-public partial class TodoListView : ReactiveUserControl<TodoListViewModel>
+public partial class TodoCommandPanelView : ReactiveUserControl<TodoCommandPanelViewModel>
 {
-    public TodoListView()
+    public TodoCommandPanelView()
     {
         InitializeComponent();
     }

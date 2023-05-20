@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using AutoBogus;
 
-namespace Todo.Desktop.Features.Todo;
+namespace Todo.Desktop.Modules.Todo;
 
 public class TodoStore
 {

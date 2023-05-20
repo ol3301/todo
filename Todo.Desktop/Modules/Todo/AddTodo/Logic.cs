@@ -1,15 +1,16 @@
 using ReactiveUI;
-using Todo.Desktop.Features.Todo.TodoList;
+using Todo.Desktop.Modules.Todo.TodoList;
 using Todo.Desktop.Shared.Modal;
 
-namespace Todo.Desktop.Features.Todo.AddTodo;
+namespace Todo.Desktop.Modules.Todo.AddTodo;
 
 public static class Logic
 {
     public static void BindAddCommand(this AddTodoViewModel model, 
         TodoStore todoStore,
-        ModalService modalStore)
+        ModalService modalService)
     {
+        model.BindCancelCommand(modalService);
         model.IsAddMode = true;
         
         model.SubmitCommand = ReactiveCommand.Create(() =>
@@ -22,17 +23,18 @@ public static class Logic
             };
         
             todoStore.Todos.Add(todo);
-            modalStore.Hide();
+            modalService.Hide();
         }, model.ValidationContext.Valid);
     }
     
     public static void BindEditCommand(this AddTodoViewModel model,
         TodoListViewModel todoListViewModel,
-        ModalService modalStore)
+        ModalService modalService)
     {
+        model.BindCancelCommand(modalService);
         model.IsAddMode = false;
         
-        var selected = todoListViewModel.Selected!;
+        var selected = todoListViewModel.SelectedTodo!;
         
         model.Name = selected.Name;
         model.Details = selected.Details;
@@ -44,7 +46,13 @@ public static class Logic
             selected.Details = model.Details;
             selected.PlannedOn = model.PlannedOn;
             
-            modalStore.Hide();
+            modalService.Hide();
         }, model.ValidationContext.Valid);
+    }
+
+    private static void BindCancelCommand(this AddTodoViewModel model, 
+        ModalService modalService)
+    {
+        model.CancelCommand = ReactiveCommand.Create(modalService.Hide);
     }
 }

@@ -1,20 +1,20 @@
 using ReactiveUI;
-using Todo.Desktop.Features.Todo.AddTodo;
-using Todo.Desktop.Features.Todo.TodoList;
+using Todo.Desktop.Modules.Todo.AddTodo;
+using Todo.Desktop.Modules.Todo.TodoList;
 using Todo.Desktop.Shared.Modal;
 using Todo.Desktop.Shared.Navigation;
 
-namespace Todo.Desktop.Features.Todo.TodoCommandPanel;
+namespace Todo.Desktop.Modules.Todo.TodoCommandPanel;
 
 public static class Logic
 {
-    public static void BindAddCommand(this TodoCommandPanelViewModel model, ModalService modalStore,
+    public static void BindAddCommand(this TodoCommandPanelViewModel model, ModalService modalService,
         TodoStore todoStore)
     {
         model.AddCommand = ReactiveCommand.Create(() =>
         {
-            modalStore.Show<AddTodoViewModel>()
-                .BindAddCommand(todoStore, modalStore);
+            modalService.Show<AddTodoViewModel>()
+                .BindAddCommand(todoStore, modalService);
         });
     }
     

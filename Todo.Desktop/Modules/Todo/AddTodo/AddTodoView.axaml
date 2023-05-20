@@ -2,9 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:Todo.Desktop.Features.Todo.AddTodo"
+             xmlns:local="clr-namespace:Todo.Desktop.Modules.Todo.AddTodo"
              mc:Ignorable="d" 
-             x:Class="Todo.Desktop.Features.Todo.AddTodo.AddTodoView"
+             x:Class="Todo.Desktop.Modules.Todo.AddTodo.AddTodoView"
              x:DataType="local:AddTodoViewModel"
              x:CompileBindings="True"
 >
@@ -60,8 +60,12 @@
         </Border>
         
         <Border Grid.Row="2" Classes="footer">
-            <Button HorizontalAlignment="Right" 
-                    Command="{Binding SubmitCommand}">Submit</Button>
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Command="{Binding CancelCommand}">Cancel</Button>
+                    <Button Command="{Binding SubmitCommand}">Submit</Button>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

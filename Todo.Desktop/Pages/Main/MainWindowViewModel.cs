@@ -1,5 +1,5 @@
 using ReactiveUI;
-using Todo.Desktop.Features.Todo.TodoCommandPanel;
+using Todo.Desktop.Modules.Todo.TodoCommandPanel;
 
 namespace Todo.Desktop.Pages.Main;
 
