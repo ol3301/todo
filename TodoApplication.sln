@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Desktop", "Todo.Desktop\Todo.Desktop.csproj", "{0537C5FE-5846-48C0-AF9E-1FBEFE54DDBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Client", "Todo.Client\Todo.Client.csproj", "{0537C5FE-5846-48C0-AF9E-1FBEFE54DDBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.API", "Todo.API\Todo.API.csproj", "{4485E0CC-8C36-4AA8-9453-74C81D2E9FFE}"
 EndProject

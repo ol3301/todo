@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:navigation="clr-namespace:Todo.Client.Shared.Navigation"
+        xmlns:main="clr-namespace:Todo.Client.Pages.Main"
+        xmlns:todoCommandPanel="clr-namespace:Todo.Client.Modules.Todo.TodoCommandPanel"
+        xmlns:modal="clr-namespace:Todo.Client.Shared.Modal"
+        xmlns:addTodo="clr-namespace:Todo.Client.Modules.Todo.AddTodo"
+        xmlns:todoList="clr-namespace:Todo.Client.Modules.Todo.TodoList"
+        xmlns:todo="clr-namespace:Todo.Client.Modules.Todo"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="350"
+        x:Class="Todo.Client.Pages.Main.MainWindow"
+        x:DataType="main:MainWindowViewModel"
+        x:CompileBindings="True"
+        Width="800"
+        Height="500"
+        Title="Todo.Client"
+        RequestedThemeVariant="Light"
+        >
+    
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type todoList:TodoListViewModel}">
+            <todoList:TodoListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type addTodo:AddTodoViewModel}">
+            <addTodo:AddTodoView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type todo:OneModel}">
+            <todo:One/>
+        </DataTemplate>
+    </Window.DataTemplates>
+    
+    <Grid>
+        <Grid RowDefinitions="Auto,*">
+            <todoCommandPanel:TodoCommandPanelView
+                Grid.Row="0" 
+                HorizontalContentAlignment="Center" 
+                Margin="10" 
+                DataContext="{Binding TodoCommandPanelViewModel}"/>
+        
+            <navigation:NavigationView Grid.Row="1"/>
+        </Grid>
+        
+        <modal:ModalView/>
+    </Grid>
+</Window>

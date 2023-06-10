@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:modal="clr-namespace:Todo.Client.Shared.Modal"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Todo.Client.Shared.Modal.ModalView"
+             x:CompileBindings="True">
+    <UserControl.Styles>
+        <Style Selector="Border.Overlay">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+        
+        <Style Selector="Border.Main">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="BoxShadow" Value="10 10 30 #555555"/>
+        </Style>
+        
+        <Style Selector="modal|ModalView">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="modal|ModalView[Opacity=0]">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+        
+        <Style Selector="modal|ModalView[IsOpen=False]">
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+        
+        <Style Selector="modal|ModalView[IsOpen=True]">
+            <Setter Property="IsVisible" Value="True"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+        </Style>
+        
+    </UserControl.Styles>
+    
+    <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="*,Auto,*">
+        <Border Grid.ColumnSpan="3"
+              Grid.RowSpan="3"
+              Classes="Overlay"
+              PointerPressed="OnHideHandler"/>
+        
+        <Border Grid.Column="1" Grid.Row="1" Classes="Main">
+            <ContentControl Name="ContentControl"/>
+        </Border>
+    </Grid>
+</UserControl>
