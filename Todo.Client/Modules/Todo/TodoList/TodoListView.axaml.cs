@@ -38,7 +38,7 @@ public partial class TodoListView : ReactiveUserControl<TodoListViewModel>
         MenuItem editButton = new MenuItem
         {
             Header = "Edit",
-            Command = ReactiveCommand.Create(() => ViewModel!.ShowEditModal(selected.First())),
+            Command = ReactiveCommand.Create(() => ViewModel!.ShowEditModal()),
             IsEnabled = selected.Count > 0
         };
         

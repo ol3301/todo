@@ -13,5 +13,5 @@ public class TodoItem: ReactiveObject
     public string Details { get; set; }
     
     [Reactive]
-    public DateTimeOffset? PlannedOn { get; set; }
+    public DateTime? PlannedOn { get; set; }
 }

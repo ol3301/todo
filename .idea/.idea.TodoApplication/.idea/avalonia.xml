@@ -17,6 +17,13 @@
         <entry key="AvaloniaApplication2/Pages/Main/MainWindow.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
         <entry key="AvaloniaApplication2/Shared/DialogModal.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
         <entry key="AvaloniaApplication2/Shared/Navigation/NavigationView.axaml" value="AvaloniaApplication2/AvaloniaApplication2.csproj" />
+        <entry key="Todo.Client/App.axaml" value="Todo.Client/Todo.Client.csproj" />
+        <entry key="Todo.Client/Modules/Todo/AddTodo/AddTodoView.axaml" value="Todo.Client/Todo.Client.csproj" />
+        <entry key="Todo.Client/Modules/Todo/One.axaml" value="Todo.Client/Todo.Client.csproj" />
+        <entry key="Todo.Client/Modules/Todo/TodoCommandPanel/TodoCommandPanelView.axaml" value="Todo.Client/Todo.Client.csproj" />
+        <entry key="Todo.Client/Modules/Todo/TodoList/TodoListView.axaml" value="Todo.Client/Todo.Client.csproj" />
+        <entry key="Todo.Client/Pages/Main/MainWindow.axaml" value="Todo.Client/Todo.Client.csproj" />
+        <entry key="Todo.Client/Shared/Modal/ModalView.axaml" value="Todo.Client/Todo.Client.csproj" />
         <entry key="Todo.Desktop/App.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Features/Todo/AddTodo/AddTodoView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />
         <entry key="Todo.Desktop/Features/Todo/EditTodo/EditTodoView.axaml" value="Todo.Desktop/Todo.Desktop.csproj" />

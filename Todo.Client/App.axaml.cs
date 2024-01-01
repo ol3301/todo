@@ -32,10 +32,10 @@ public class App : Avalonia.Application
             
             var navigationStore = _host.Services.GetRequiredService<NavigationService>();
             var todoStore = _host.Services.GetRequiredService<TodoStore>();
+
+            Dispatcher.UIThread.Post(async () => await todoStore.Init());
             
             navigationStore.NavigateTo<TodoListViewModel>();
-            
-            Dispatcher.UIThread.Post(async () => await todoStore.Init());
         }
 
         base.OnFrameworkInitializationCompleted();

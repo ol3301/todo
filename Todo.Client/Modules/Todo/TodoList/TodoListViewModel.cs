@@ -29,7 +29,7 @@ public class TodoListViewModel : ReactiveObject
         Todos.RemoveMany(todos);
     }
 
-    public void ShowEditModal(TodoItem todo)
+    public void ShowEditModal()
     {
         _modalService.Show<AddTodoViewModel>()
             .Subscribe(vm => vm.BindEditCommand(this, _modalService));

@@ -7,6 +7,7 @@
              x:Class="Todo.Client.Modules.Todo.AddTodo.AddTodoView"
              x:DataType="local:AddTodoViewModel"
              x:CompileBindings="True"
+             Width="500"
 >
     
     <UserControl.Styles>
@@ -46,7 +47,7 @@
         </Border>
         
         <Border Grid.Row="1" Classes="content">
-            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto">
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
                 <TextBlock Grid.Row="0" Grid.Column="0">Name:</TextBlock>
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
             
@@ -54,7 +55,9 @@
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Details}"/>
             
                 <TextBlock Grid.Row="2" Grid.Column="0">Planned on:</TextBlock>
-                <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding PlannedOn}"/>
+                <CalendarDatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding PlannedOn}"/>
+                
+                <TextBlock Grid.Row="3">Select image:</TextBlock>
             </Grid>
         </Border>
         

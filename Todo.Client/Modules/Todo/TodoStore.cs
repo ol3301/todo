@@ -1,7 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using AutoBogus;
 
 namespace Todo.Client.Modules.Todo;
 
@@ -22,8 +21,7 @@ public class TodoStore
 
         for (int i = 0; i < 10; ++i)
         {
-            Todos.Add(AutoFaker.Generate<TodoItem>());
-            //Todos.Add(new TodoItem{Name = "Test", Details = "Test", PlannedOn = DateTimeOffset.Now});
+            Todos.Add(new TodoItem{Name = "Test", Details = "Test", PlannedOn = DateTime.Now});
         }
     }
 }
