@@ -10,7 +10,7 @@ public class UnhandledExceptionService
     {
         UnhandledExceptionWindow window = new UnhandledExceptionWindow();
         var desktop = (Avalonia.Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)!;
-        window.FindControl<TextBox>("StackTraceText").Text = ex.ToString();
-        window.ShowDialog(desktop.MainWindow);
+        window.FindControl<TextBox>("StackTraceText")!.Text = ex.ToString();
+        window.ShowDialog(desktop.MainWindow!);
     }
 }

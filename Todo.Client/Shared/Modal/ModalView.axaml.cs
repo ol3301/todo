@@ -32,7 +32,7 @@ public partial class ModalView : UserControl
 
    public static void ShowContent(object content) => Dispatcher.UIThread.Post(() =>
    {
-       Instance.FindControl<ContentControl>("ContentControl").Content = content;
+       Instance.FindControl<ContentControl>("ContentControl")!.Content = content;
        Instance.IsOpen = true;
    });
 

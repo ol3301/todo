@@ -12,11 +12,6 @@ public class NavigationService
     {
         _serviceProvider = serviceProvider;
     }
-
-    public NavigationService()
-    {
-        
-    }
     
     public void NavigateTo<TVm>() where TVm: notnull
     {

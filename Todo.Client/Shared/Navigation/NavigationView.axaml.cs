@@ -22,6 +22,6 @@ public partial class NavigationView : UserControl
 
     public static void NavigateTo(object content) => Dispatcher.UIThread.Post(() =>
     {
-        Instance.FindControl<ContentControl>("ContentControl").Content = content;
+        Instance.FindControl<ContentControl>("ContentControl")!.Content = content;
     });
 }
