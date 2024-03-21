@@ -26,9 +26,6 @@
         <DataTemplate DataType="{x:Type addTodo:AddTodoViewModel}">
             <addTodo:AddTodoView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type todo:OneModel}">
-            <todo:One/>
-        </DataTemplate>
     </Window.DataTemplates>
     
     <Grid>

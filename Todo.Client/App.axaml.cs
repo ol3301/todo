@@ -16,11 +16,13 @@ public class App : Avalonia.Application
     private IHost _host;
     public override void Initialize()
     {
-        //make it with tabs rather than with navigation service
         AvaloniaXamlLoader.Load(this);
-        
-        _host = Bootstrapper.Build();
-        GlobalExceptionHandler.Setup(_host);
+
+        _host = new Bootstrapper()
+            .Build()
+            .WithMockData()
+            .WithPage<TodoListViewModel>()
+            .WithGlobalExceptionHandler();
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -29,13 +31,6 @@ public class App : Avalonia.Application
         {
             desktop.MainWindow = new MainWindow();
             desktop.MainWindow.DataContext = _host.Services.GetRequiredService<MainWindowViewModel>();
-            
-            var navigationStore = _host.Services.GetRequiredService<NavigationService>();
-            var todoStore = _host.Services.GetRequiredService<TodoStore>();
-
-            Dispatcher.UIThread.Post(async () => await todoStore.Init());
-            
-            navigationStore.NavigateTo<TodoListViewModel>();
         }
 
         base.OnFrameworkInitializationCompleted();

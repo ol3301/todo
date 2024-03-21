@@ -13,7 +13,7 @@ public class TodoStore
         Todos = new ObservableCollection<TodoItem>();
     }
 
-    public async Task Init()
+    public async Task GenerateSomeData()
     {
         Todos.Clear();
 
