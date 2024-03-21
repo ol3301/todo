@@ -11,6 +11,8 @@ namespace Todo.Client.Modules.Todo.TodoList;
 
 public class TodoListViewModel : ReactiveObject
 {
+    private readonly TodoStore _todoStore;
+    
     private ModalService _modalService;
     
     public ObservableCollection<TodoItem> Todos { get; }
@@ -21,6 +23,7 @@ public class TodoListViewModel : ReactiveObject
     public TodoListViewModel(TodoStore todoStore, ModalService modalService)
     {
         Todos = todoStore.Todos;
+        _todoStore = todoStore;
         _modalService = modalService;
     }
 
@@ -32,6 +35,6 @@ public class TodoListViewModel : ReactiveObject
     public void ShowEditModal()
     {
         _modalService.Show<AddTodoViewModel>()
-            .Subscribe(vm => vm.BindEditCommand(this, _modalService));
+            .BindEditCommand(this, _todoStore, () => _modalService.Hide());
     }
 }

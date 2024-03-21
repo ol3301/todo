@@ -1,37 +1,35 @@
+using System;
 using ReactiveUI;
 using Todo.Client.Modules.Todo.TodoList;
-using Todo.Client.Shared.Modal;
 
 namespace Todo.Client.Modules.Todo.AddTodo;
 
-public static class Logic
+public static class AddTodoViewModelExtensions
 {
     public static void BindAddCommand(this AddTodoViewModel model, 
         TodoStore todoStore,
-        ModalService modalService)
+        Action onExit)
     {
-        model.BindCancelCommand(modalService);
+        model.OnExit = onExit;
+        model.BindCancelCommand();
         model.IsAddMode = true;
         
         model.SubmitCommand = ReactiveCommand.Create(() =>
         {
-            var todo = new TodoItem
-            {
-                Name = model.Name,
-                Details = model.Details,
-                PlannedOn = model.PlannedOn
-            };
-        
+            var todo = model.GetTodoItem();
+            
             todoStore.Todos.Add(todo);
-            modalService.Hide();
+            model.OnExit();
         }, model.ValidationContext.Valid);
     }
     
     public static void BindEditCommand(this AddTodoViewModel model,
         TodoListViewModel todoListViewModel,
-        ModalService modalService)
+        TodoStore todoStore,
+        Action onExit)
     {
-        model.BindCancelCommand(modalService);
+        model.OnExit = onExit;
+        model.BindCancelCommand();
         model.IsAddMode = false;
         
         var selected = todoListViewModel.SelectedTodo!;
@@ -45,20 +43,20 @@ public static class Logic
             selected.Name = model.Name;
             selected.Details = model.Details;
             selected.PlannedOn = model.PlannedOn;
-            
-            modalService.Hide();
+
+            model.OnExit();
         }, model.ValidationContext.Valid);
 
         model.DeleteCommand = ReactiveCommand.Create(() =>
         {
-            todoListViewModel.DeleteSelected(new []{ selected });
-            modalService.Hide();
+            todoStore.Todos.Remove(selected);
+            
+            model.OnExit();
         });
     }
 
-    private static void BindCancelCommand(this AddTodoViewModel model, 
-        ModalService modalService)
+    private static void BindCancelCommand(this AddTodoViewModel model)
     {
-        model.CancelCommand = ReactiveCommand.Create(modalService.Hide);
+        model.CancelCommand = ReactiveCommand.Create(model.OnExit);
     }
 }

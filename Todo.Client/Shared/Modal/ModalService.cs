@@ -1,5 +1,4 @@
 using System;
-using System.Reactive.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Todo.Client.Shared.Modal;
@@ -11,11 +10,11 @@ public class ModalService
     {
         _provider = provider;
     }
-    public IObservable<TVm> Show<TVm>() where TVm: notnull
+    public TViewModel Show<TViewModel>() where TViewModel: notnull
     {
-        var obs = Observable.Start(() => _provider.GetRequiredService<TVm>());
-        obs.Subscribe(vm => ModalView.ShowContent(vm));
-        return obs;
+        var viewModel = _provider.GetRequiredService<TViewModel>();
+        ModalView.ShowContent(viewModel);
+        return viewModel;
     }
 
     public void Hide()

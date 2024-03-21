@@ -1,7 +1,5 @@
 using System.Reactive;
-using System.Reactive.Disposables;
 using ReactiveUI;
-using Todo.Client.Modules.Todo.AddTodo;
 using Todo.Client.Shared.Modal;
 using Todo.Client.Shared.Navigation;
 

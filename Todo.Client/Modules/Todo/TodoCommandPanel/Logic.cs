@@ -1,4 +1,3 @@
-using System;
 using ReactiveUI;
 using Todo.Client.Modules.Todo.AddTodo;
 using Todo.Client.Modules.Todo.TodoList;
@@ -15,7 +14,7 @@ public static class Logic
         model.AddCommand = ReactiveCommand.Create(() =>
         {
             modalService.Show<AddTodoViewModel>()
-                .Subscribe(vm => vm.BindAddCommand(todoStore, modalService));
+                .BindAddCommand(todoStore, () => modalService.Hide());
         });
     }
     
